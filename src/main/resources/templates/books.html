@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bibliotek System</title>
+
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+<div class="navbar">
+    <a href="/books">Alla böcker</a>
+    <a href="/loans/my">Mina lån</a>
+    <a href="/loans/history">Historik</a>
+    <a href="/login">Logga in</a>
+    <a href="/logout">Logga ut</a>
+</div>
+
+<div class="container">
+
+    <h1>Bibliotek System</h1>
+
+    <form method="get" action="/books">
+        <input type="text"
+               name="keyword"
+               placeholder="Sök bok eller författare"
+               th:value="${keyword}">
+        <button type="submit">Sök</button>
+    </form>
+
+    <table>
+        <tr>
+            <th>Titel</th>
+            <th>Författare</th>
+            <th>Status</th>
+            <th>Detaljer</th>
+        </tr>
+
+        <tr th:each="book : ${books}">
+            <td th:text="${book.title}"></td>
+            <td th:text="${book.author}"></td>
+            <td th:text="${book.available ? 'Tillgänglig' : 'Utlånad'}"></td>
+            <td>
+                <a th:href="@{'/books/' + ${book.id}}">Visa</a>
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+</body>
+</html>

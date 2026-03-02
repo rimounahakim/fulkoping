@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bokdetaljer</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+<div class="navbar">
+    <a href="/books">Alla böcker</a>
+    <a href="/loans/my">Mina lån</a>
+    <a href="/loans/history">Historik</a>
+    <a href="/logout">Logga ut</a>
+</div>
+
+<div class="container">
+    <h1 th:text="${book.title}"></h1>
+
+    <p><strong>Författare:</strong> <span th:text="${book.author}"></span></p>
+    <p><strong>Status:</strong>
+        <span th:text="${book.available ? 'Tillgänglig' : 'Utlånad'}"></span>
+    </p>
+
+    <div th:if="${book.available}">
+        <form th:action="@{'/loans/borrow/' + ${book.id}}" method="post">
+            <button type="submit">Låna</button>
+        </form>
+    </div>
+
+    <br>
+    <a href="/books">Tillbaka</a>
+</div>
+
+</body>
+</html>

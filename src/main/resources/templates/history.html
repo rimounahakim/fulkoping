@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Historik</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+
+<div class="navbar">
+    <a href="/books">Alla böcker</a>
+    <a href="/loans/my">Mina lån</a>
+    <a href="/loans/history">Historik</a>
+    <a href="/logout">Logga ut</a>
+</div>
+
+<div class="container">
+    <h1>Lånehistorik</h1>
+
+    <table>
+        <tr>
+            <th>Titel</th>
+            <th>Lånad</th>
+            <th>Status</th>
+        </tr>
+
+        <tr th:each="loan : ${loans}">
+            <td th:text="${loan.book.title}"></td>
+            <td th:text="${loan.loanDate}"></td>
+            <td th:text="${loan.returned ? 'Återlämnad' : 'Aktiv'}"></td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>

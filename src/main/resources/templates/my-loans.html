@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Mina lån</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+
+<div class="navbar">
+    <a href="/books">Alla böcker</a>
+    <a href="/loans/my">Mina lån</a>
+    <a href="/loans/history">Historik</a>
+    <a href="/logout">Logga ut</a>
+</div>
+
+<div class="container">
+    <h1>Mina lån</h1>
+
+    <table>
+        <tr>
+            <th>Titel</th>
+            <th>Lånad datum</th>
+            <th>Återlämna</th>
+        </tr>
+
+        <tr th:each="loan : ${loans}">
+            <td th:text="${loan.book.title}"></td>
+            <td th:text="${loan.loanDate}"></td>
+            <td>
+                <form th:action="@{/loans/return/{id}(id=${loan.id})}" method="post">
+                    <button type="submit">Lämna tillbaka</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>

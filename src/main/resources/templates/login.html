@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Logga in</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+<div class="navbar">
+    <a href="/books">Alla böcker</a>
+</div>
+
+<div class="container">
+    <h1>Logga in</h1>
+
+    <form method="post" action="/login">
+        <div>
+            <label>Användarnamn:</label>
+            <input type="text" name="username">
+        </div>
+
+        <div>
+            <label>Lösenord:</label>
+            <input type="password" name="password">
+        </div>
+
+        <button type="submit">Logga in</button>
+    </form>
+</div>
+
+</body>
+</html>
